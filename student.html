@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Education Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-3"></i>
+                        <h1 class="text-xl font-bold text-gray-800">Student Dashboard</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </button>
+                    <div class="flex items-center">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40" 
+                             alt="Student" class="w-8 h-8 rounded-full mr-2">
+                        <span class="text-gray-700">Rahim Uddin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg h-screen fixed left-0 top-16 z-10">
+            <div class="p-4">
+                <div class="space-y-2">
+                    <button class="nav-item w-full text-left p-3 rounded-lg bg-blue-50 text-blue-600 font-medium" data-section="overview">
+                        <i class="fas fa-home mr-3"></i>Overview
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="courses">
+                        <i class="fas fa-book mr-3"></i>My Courses
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="all-courses">
+                        <i class="fas fa-graduation-cap mr-3"></i>All Courses
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="classes">
+                        <i class="fas fa-video mr-3"></i>Classes
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="exams">
+                        <i class="fas fa-clipboard-list mr-3"></i>Exams & Assignments
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="books">
+                        <i class="fas fa-file-pdf mr-3"></i>Books & PDFs
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="notices">
+                        <i class="fas fa-bell mr-3"></i>Notices
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="performance">
+                        <i class="fas fa-chart-line mr-3"></i>Performance
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="account">
+                        <i class="fas fa-user mr-3"></i>Account
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex-1 p-6">
+            <!-- Overview Section -->
+            <div id="overview" class="section active">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back, Rahim!</h2>
+                    <p class="text-gray-600">Here's your learning progress today.</p>
+                </div>
+
+                <!-- Next Class Countdown -->
+                <div class="bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl p-6 text-white mb-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Next Live Class</h3>
+                            <p class="text-lg">IELTS Speaking Practice</p>
+                            <p class="text-sm opacity-80">Today at 2:00 PM</p>
+                            <div id="countdown" class="text-xl font-mono mt-2">01:23:45</div>
+                        </div>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-video mr-2"></i>Join Class
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-trophy text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-800">85%</p>
+                                <p class="text-sm text-gray-600">Overall Progress</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-check text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-800">90%</p>
+                                <p class="text-sm text-gray-600">Attendance Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-medal text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-800">88</p>
+                                <p class="text-sm text-gray-600">Average Score</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Progress & Upcoming Exams -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Course Progress</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">IELTS Preparation</span>
+                                    <span class="text-gray-600">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">Spoken English</span>
+                                    <span class="text-gray-600">92%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">English Grammar</span>
+                                    <span class="text-gray-600">78%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-yellow-600 h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Exams</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border-l-4 border-red-400">
+                                <div>
+                                    <p class="font-medium text-gray-800">IELTS Mock Test - 2</p>
+                                    <p class="text-sm text-gray-600">Tomorrow at 10:00 AM</p>
+                                </div>
+                                <i class="fas fa-clock text-red-600"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                                <div>
+                                    <p class="font-medium text-gray-800">Grammar Assignment</p>
+                                    <p class="text-sm text-gray-600">Due: Jan 25, 2025</p>
+                                </div>
+                                <i class="fas fa-clipboard text-yellow-600"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                <div>
+                                    <p class="font-medium text-gray-800">Speaking Practice Test</p>
+                                    <p class="text-sm text-gray-600">Jan 30, 2025</p>
+                                </div>
+                                <i class="fas fa-microphone text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Notices -->
+                <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Latest Notices</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 border-l-4 border-blue-400 bg-blue-50">
+                            <p class="font-medium text-gray-800">New Course Material Added</p>
+                            <p class="text-sm text-gray-600">Advanced Grammar lessons have been uploaded to your course library.</p>
+                            <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                        </div>
+                        <div class="p-3 border-l-4 border-yellow-400 bg-yellow-50">
+                            <p class="font-medium text-gray-800">Class Timing Update</p>
+                            <p class="text-sm text-gray-600">Tomorrow's IELTS class has been rescheduled to 3:00 PM.</p>
+                            <p class="text-xs text-gray-500 mt-1">5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div id="courses" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">My Courses</h2>
+                    <p class="text-gray-600">Continue your learning journey</p>
+                </div>
+
+                <!-- Enrolled Courses -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Enrolled Courses</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="enrolledCoursesGrid">
+                        <!-- Courses will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Available Courses -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Available Courses</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="availableCoursesGrid">
+                        <!-- Courses will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Courses Section -->
+            <div id="all-courses" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">All Courses</h2>
+                    <p class="text-gray-600">Browse and enroll in available courses</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="allCoursesGrid">
+                    <!-- All courses will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Course Detail Section -->
+            <div id="course-detail" class="section hidden">
+                <div class="mb-6">
+                    <button onclick="goBackToCourses()" class="text-blue-600 hover:text-blue-800 mb-4">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Courses
+                    </button>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2" id="courseDetailTitle">Course Details</h2>
+                    <p class="text-gray-600" id="courseDetailDescription">Course content and materials</p>
+                </div>
+
+                <!-- Course Content Tabs -->
+                <div class="bg-white rounded-xl shadow-md">
+                    <div class="border-b">
+                        <nav class="flex space-x-8 px-6">
+                            <button class="course-tab py-4 px-2 border-b-2 border-blue-500 text-blue-600 font-medium" data-tab="classes">
+                                Classes
+                            </button>
+                            <button class="course-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="books">
+                                Books & PDFs
+                            </button>
+                            <button class="course-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="assignments">
+                                Assignments
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Classes Tab Content -->
+                    <div id="course-classes" class="course-tab-content p-6">
+                        <div class="space-y-4" id="courseClassesList">
+                            <!-- Course classes will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Books Tab Content -->
+                    <div id="course-books" class="course-tab-content p-6 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="courseBooksList">
+                            <!-- Course books will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Assignments Tab Content -->
+                    <div id="course-assignments" class="course-tab-content p-6 hidden">
+                        <div class="space-y-4" id="courseAssignmentsList">
+                            <!-- Course assignments will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classes Section -->
+            <div id="classes" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Classes</h2>
+                    <p class="text-gray-600">Select a course to view its classes</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="classesCoursesGrid">
+                    <!-- Enrolled courses for classes will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Exams Section -->
+            <div id="exams" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Exams & Assignments</h2>
+                    <p class="text-gray-600">Track your assessments and submissions</p>
+                </div>
+
+                <!-- Exam Tabs -->
+                <div class="mb-6">
+                    <div class="border-b border-gray-200">
+                        <nav class="-mb-px flex space-x-8">
+                            <button class="exam-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm active" data-tab="all-exams">
+                                All Exams
+                            </button>
+                            <button class="exam-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" data-tab="completed">
+                                Completed
+                            </button>
+                            <button class="exam-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" data-tab="pending">
+                                Pending
+                            </button>
+                            <button class="exam-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" data-tab="assignments">
+                                Assignments
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+
+                <div id="examsContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Exams will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Books Section -->
+            <div id="books" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Books & PDFs</h2>
+                    <p class="text-gray-600">Select a course to view its books and materials</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="booksCoursesGrid">
+                    <!-- Enrolled courses for books will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Notices Section -->
+            <div id="notices" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Notices</h2>
+                    <p class="text-gray-600">Stay updated with important announcements</p>
+                </div>
+
+                <div class="space-y-4" id="studentNoticesList">
+                    <!-- Notices will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Performance Section -->
+            <div id="performance" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Performance Analytics</h2>
+                    <p class="text-gray-600">Track your academic progress</p>
+                </div>
+
+                <!-- Performance Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-percentage text-blue-600 text-2xl"></i>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-800 mb-2">90%</p>
+                        <p class="text-gray-600">Attendance Rate</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-800 mb-2">88</p>
+                        <p class="text-gray-600">Average Score</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trophy text-yellow-600 text-2xl"></i>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-800 mb-2">15</p>
+                        <p class="text-gray-600">Exams Completed</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-purple-600 text-2xl"></i>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-800 mb-2">3</p>
+                        <p class="text-gray-600">Courses Enrolled</p>
+                    </div>
+                </div>
+
+                <!-- Performance Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Monthly Attendance</h3>
+                        <canvas id="studentAttendanceChart"></canvas>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Exam Scores Trend</h3>
+                        <canvas id="studentScoresChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Course Progress Overview</h3>
+                    <canvas id="studentProgressChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Account Section -->
+            <div id="account" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">My Account</h2>
+                    <p class="text-gray-600">Manage your profile and preferences</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Profile Card -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150" 
+                                 alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-4">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Rahim Uddin</h3>
+                            <p class="text-gray-600 mb-4">Student ID: 2023001</p>
+                            <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Edit Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Account Details -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6">Personal Information</h3>
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                        <input type="text" value="Rahim Uddin" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" value="rahim.uddin@email.com" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                        <input type="tel" value="+880 1712-345678" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                        <input type="date" value="1998-05-15" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                    <input type="text" value="Dhanmondi, Dhaka, Bangladesh" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Enrollment Date</label>
+                                        <input type="date" value="2023-01-15" class="w-full p-3 border border-gray-300 rounded-lg" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                        <input type="text" value="Active Student" class="w-full p-3 border border-gray-300 rounded-lg bg-green-50 text-green-800" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Summary -->
+                <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Academic Summary</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-book-open text-blue-600 text-2xl"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-gray-800 mb-2">3</p>
+                            <p class="text-gray-600">Courses Enrolled</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-calendar-check text-green-600 text-2xl"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-gray-800 mb-2">42</p>
+                            <p class="text-gray-600">Classes Attended</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-award text-yellow-600 text-2xl"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-gray-800 mb-2">88%</p>
+                            <p class="text-gray-600">Average Grade</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo data for student dashboard
+        const studentData = {
+            profile: {
+                id: 2023001,
+                name: "Rahim Uddin",
+                email: "rahim.uddin@email.com",
+                phone: "+880 1712-345678",
+                address: "Dhanmondi, Dhaka, Bangladesh",
+                enrollmentDate: "2023-01-15",
+                status: "Active"
+            },
+            enrolledCourses: [
+                { id: 101, title: "IELTS Preparation", progress: 85, instructor: "Dr. Rahman", modules: 8, completedModules: 7 },
+                { id: 102, title: "Spoken English", progress: 92, instructor: "Prof. Sultana", modules: 6, completedModules: 6 },
+                { id: 103, title: "English Grammar", progress: 78, instructor: "Mr. Khan", modules: 5, completedModules: 4 }
+            ],
+            availableCourses: [
+                { id: 104, title: "Business English", instructor: "Ms. Fatema", duration: "8 weeks", price: "৳5,000" },
+                { id: 105, title: "Academic Writing", instructor: "Dr. Shakil", duration: "10 weeks", price: "৳6,000" },
+                { id: 106, title: "English Literature", instructor: "Prof. Nasir", duration: "12 weeks", price: "৳7,000" }
+            ],
+            classes: [
+                { id: 1, title: "IELTS Speaking Practice", date: "2025-01-20", time: "2:00 PM", status: "attended", type: "live" },
+                { id: 2, title: "Grammar Review Session", date: "2025-01-18", time: "4:00 PM", status: "missed", type: "live" },
+                { id: 3, title: "Vocabulary Building", date: "2025-01-22", time: "10:00 AM", status: "upcoming", type: "live" },
+                { id: 4, title: "Pronunciation Workshop", date: "2025-01-15", time: "3:00 PM", status: "attended", type: "recorded" }
+            ],
+            exams: [
+                { id: 1, title: "IELTS Mock Test - 1", date: "2025-01-15", score: 85, status: "completed", type: "exam" },
+                { id: 2, title: "Grammar Assignment", date: "2025-01-25", status: "pending", type: "assignment" },
+                { id: 3, title: "Speaking Practice Test", date: "2025-01-22", status: "upcoming", type: "exam" },
+                { id: 4, title: "Essay Writing Task", date: "2025-01-28", status: "upcoming", type: "assignment" }
+            ],
+            books: [
+                { id: 1, title: "ইংরেজি গ্রামার ও রচনা", author: "Dr. Mohammad Ali", category: "Grammar", status: "reading" },
+                { id: 2, title: "IELTS Preparation Guide", author: "Cambridge University", category: "Test Prep", status: "completed" },
+                { id: 3, title: "ব্যবসায়িক ইংরেজি", author: "Karim Hassan", category: "Business", status: "available" },
+                { id: 4, title: "উচ্চারণ শিক্ষা", author: "Prof. Rashida Khan", category: "Pronunciation", status: "reading" }
+            ],
+            notices: [
+                { id: 1, title: "New Course Material Added", content: "Advanced Grammar lessons have been uploaded to your course library.", date: "2025-01-15", priority: "medium" },
+                { id: 2, title: "Class Timing Update", content: "Tomorrow's IELTS class has been rescheduled to 3:00 PM.", date: "2025-01-14", priority: "high" },
+                { id: 3, title: "Exam Results Published", content: "Mock test results are now available in your performance section.", date: "2025-01-12", priority: "low" },
+                { id: 4, title: "Holiday Notice", content: "Classes will be closed on Victory Day (16th December).", date: "2025-01-10", priority: "medium" }
+            ]
+        };
+
+        // Demo data
+        const allCoursesData = [
+            { 
+                id: 101, 
+                title: "IELTS Preparation", 
+                description: "Complete IELTS preparation course with all four modules",
+                instructor: "Dr. Rahman", 
+                duration: "3 months", 
+                price: "৳15,000", 
+                enrolled: true,
+                progress: 65,
+                modules: ["Reading", "Writing", "Speaking", "Listening"],
+                classes: [
+                    { id: 1, title: "IELTS Reading Strategies", date: "2025-01-20", time: "10:00 AM", status: "completed", type: "live" },
+                    { id: 2, title: "Writing Task 1 - Graphs", date: "2025-01-22", time: "2:00 PM", status: "completed", type: "recorded" },
+                    { id: 3, title: "Speaking Practice Session", date: "2025-01-25", time: "4:00 PM", status: "upcoming", type: "live" },
+                    { id: 4, title: "Listening Skills Development", date: "2025-01-27", time: "11:00 AM", status: "upcoming", type: "recorded" }
+                ],
+                books: [
+                    { id: 1, title: "IELTS Reading Mastery", author: "Cambridge", pages: 280, type: "PDF" },
+                    { id: 2, title: "Writing Task Solutions", author: "Dr. Khan", pages: 150, type: "PDF" }
+                ],
+                assignments: [
+                    { id: 1, title: "Reading Practice Test 1", dueDate: "2025-01-30", status: "pending" },
+                    { id: 2, title: "Writing Task 1 Assignment", dueDate: "2025-02-02", status: "submitted" }
+                ]
+            },
+            { 
+                id: 102, 
+                title: "Spoken English Mastery", 
+                description: "Improve your English speaking skills with practical exercises",
+                instructor: "Prof. Sultana", 
+                duration: "2 months", 
+                price: "৳8,000", 
+                enrolled: true,
+                progress: 40,
+                modules: ["Pronunciation", "Fluency", "Conversation"],
+                classes: [
+                    { id: 5, title: "Pronunciation Basics", date: "2025-01-21", time: "3:00 PM", status: "completed", type: "live" },
+                    { id: 6, title: "Conversation Practice", date: "2025-01-24", time: "5:00 PM", status: "missed", type: "live" },
+                    { id: 7, title: "Fluency Exercises", date: "2025-01-26", time: "1:00 PM", status: "upcoming", type: "recorded" }
+                ],
+                books: [
+                    { id: 3, title: "English Pronunciation Guide", author: "Prof. Ahmed", pages: 200, type: "PDF" },
+                    { id: 4, title: "Conversation Starters", author: "Ms. Fatima", pages: 120, type: "PDF" }
+                ],
+                assignments: [
+                    { id: 3, title: "Pronunciation Recording", dueDate: "2025-01-28", status: "pending" }
+                ]
+            },
+            { 
+                id: 103, 
+                title: "English Grammar Fundamentals", 
+                description: "Master English grammar from basics to advanced level",
+                instructor: "Mr. Karim", 
+                duration: "6 weeks", 
+                price: "৳5,000", 
+                enrolled: false,
+                progress: 0,
+                modules: ["Tenses", "Sentence Structure", "Parts of Speech"],
+                classes: [
+                    { id: 8, title: "Present Tense Mastery", date: "2025-01-23", time: "9:00 AM", status: "locked", type: "live" },
+                    { id: 9, title: "Past Tense Usage", date: "2025-01-25", time: "10:00 AM", status: "locked", type: "recorded" }
+                ],
+                books: [
+                    { id: 5, title: "Grammar Essentials", author: "Dr. Hassan", pages: 350, type: "PDF" }
+                ],
+                assignments: [
+                    { id: 4, title: "Tense Practice", dueDate: "2025-02-01", status: "locked" }
+                ]
+            },
+            { 
+                id: 104, 
+                title: "Business English", 
+                description: "Professional English for business communication",
+                instructor: "Ms. Rashida", 
+                duration: "8 weeks", 
+                price: "৳12,000", 
+                enrolled: false,
+                progress: 0,
+                modules: ["Email Writing", "Presentations", "Meetings"],
+                classes: [
+                    { id: 10, title: "Professional Email Writing", date: "2025-01-24", time: "2:00 PM", status: "locked", type: "live" }
+                ],
+                books: [
+                    { id: 6, title: "Business Communication", author: "Prof. Nasir", pages: 240, type: "PDF" }
+                ],
+                assignments: [
+                    { id: 5, title: "Email Template Creation", dueDate: "2025-02-05", status: "locked" }
+                ]
+            }
+        ];
+
+        let currentCourse = null;
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('bg-blue-50', 'text-blue-600');
+                    nav.classList.add('text-gray-700');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('bg-blue-50', 'text-blue-600');
+                this.classList.remove('text-gray-700');
+                
+                // Hide all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Show selected section
+                const targetSection = this.getAttribute('data-section');
+                document.getElementById(targetSection).classList.remove('hidden');
+                
+                // Initialize specific section content
+                initializeStudentSection(targetSection);
+            });
+        });
+
+        function initializeStudentSection(section) {
+            switch(section) {
+                case 'courses':
+                    populateStudentCourses();
+                    break;
+                case 'all-courses':
+                    populateAllCoursesGrid();
+                    break;
+                case 'classes':
+                    populateClassesCoursesGrid();
+                    break;
+                case 'exams':
+                    populateStudentExams();
+                    break;
+                case 'books':
+                    populateBooksCoursesGrid();
+                    break;
+                case 'notices':
+                    populateStudentNotices();
+                    break;
+                case 'performance':
+                    initializeStudentCharts();
+                    break;
+            }
+        }
+
+        function populateAllCoursesGrid() {
+            const grid = document.getElementById('allCoursesGrid');
+            grid.innerHTML = allCoursesData.map(course => `
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow ${!course.enrolled ? 'border-2 border-gray-200' : ''}">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 ${course.enrolled ? 'bg-green-100' : 'bg-gray-100'} rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas ${course.enrolled ? 'fa-check-circle text-green-600' : 'fa-lock text-gray-400'} text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">${course.title}</h3>
+                                    <p class="text-sm text-gray-600">by ${course.instructor}</p>
+                                </div>
+                            </div>
+                            ${!course.enrolled ? `<span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-semibold">৳${course.price.replace('৳', '')}</span>` : ''}
+                        </div>
+                        
+                        <p class="text-sm text-gray-600 mb-4">${course.description}</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Duration: ${course.duration}</span>
+                                ${course.enrolled ? `<span>Progress: ${course.progress}%</span>` : ''}
+                            </div>
+                            ${course.enrolled ? `
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: ${course.progress}%"></div>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            ${course.modules.map(module => `<span class="px-2 py-1 bg-gray-100 text-xs rounded">${module}</span>`).join('')}
+                        </div>
+                        
+                        <button onclick="${course.enrolled ? `viewCourseDetail(${course.id})` : `enrollCourse(${course.id})`}" 
+                                class="w-full ${course.enrolled ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'} text-white py-2 rounded-lg transition-colors">
+                            ${course.enrolled ? 'View Course' : 'Enroll Now'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewCourseDetail(courseId) {
+            currentCourse = allCoursesData.find(course => course.id === courseId);
+            if (!currentCourse) return;
+            
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show course detail section
+            document.getElementById('course-detail').classList.remove('hidden');
+            
+            // Update course detail header
+            document.getElementById('courseDetailTitle').textContent = currentCourse.title;
+            document.getElementById('courseDetailDescription').textContent = currentCourse.description;
+            
+            // Populate course content
+            populateCourseClasses();
+            populateCourseBooks();
+            populateCourseAssignments();
+        }
+
+        function goBackToCourses() {
+            document.getElementById('course-detail').classList.add('hidden');
+            document.getElementById('all-courses').classList.remove('hidden');
+            currentCourse = null;
+        }
+
+        function populateCourseClasses() {
+            const list = document.getElementById('courseClassesList');
+            list.innerHTML = currentCourse.classes.map(cls => `
+                <div class="flex items-center justify-between p-4 border rounded-lg ${cls.status === 'locked' ? 'bg-gray-50 opacity-60' : 'hover:bg-gray-50'}">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 ${cls.status === 'completed' ? 'bg-green-100' : cls.status === 'upcoming' ? 'bg-blue-100' : cls.status === 'missed' ? 'bg-red-100' : 'bg-gray-100'} rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas ${cls.status === 'completed' ? 'fa-check text-green-600' : cls.status === 'upcoming' ? 'fa-clock text-blue-600' : cls.status === 'missed' ? 'fa-times text-red-600' : 'fa-lock text-gray-400'}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">${cls.title}</h4>
+                            <p class="text-sm text-gray-600">${cls.date} at ${cls.time}</p>
+                            <span class="text-xs px-2 py-1 rounded ${cls.type === 'live' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}">${cls.type}</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        ${cls.status === 'upcoming' ? `<button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Join</button>` : ''}
+                        ${cls.status === 'completed' ? `<button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Replay</button>` : ''}
+                        ${cls.status === 'locked' ? `<span class="text-gray-400 text-sm">Locked</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateCourseBooks() {
+            const list = document.getElementById('courseBooksList');
+            list.innerHTML = currentCourse.books.map(book => `
+                <div class="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-file-pdf text-orange-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">${book.title}</h4>
+                            <p class="text-sm text-gray-600">by ${book.author}</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Pages: ${book.pages}</p>
+                        <p class="text-sm text-gray-600">Type: ${book.type}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700">Read</button>
+                        <button class="flex-1 bg-gray-600 text-white py-2 px-3 rounded text-sm hover:bg-gray-700">Download</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateCourseAssignments() {
+            const list = document.getElementById('courseAssignmentsList');
+            list.innerHTML = currentCourse.assignments.map(assignment => `
+                <div class="flex items-center justify-between p-4 border rounded-lg ${assignment.status === 'locked' ? 'bg-gray-50 opacity-60' : 'hover:bg-gray-50'}">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 ${assignment.status === 'submitted' ? 'bg-green-100' : assignment.status === 'pending' ? 'bg-yellow-100' : 'bg-gray-100'} rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas ${assignment.status === 'submitted' ? 'fa-check text-green-600' : assignment.status === 'pending' ? 'fa-clock text-yellow-600' : 'fa-lock text-gray-400'}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">${assignment.title}</h4>
+                            <p class="text-sm text-gray-600">Due: ${assignment.dueDate}</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        ${assignment.status === 'pending' ? `<button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Submit</button>` : ''}
+                        ${assignment.status === 'submitted' ? `<span class="text-green-600 text-sm font-medium">Submitted</span>` : ''}
+                        ${assignment.status === 'locked' ? `<span class="text-gray-400 text-sm">Locked</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateClassesCoursesGrid() {
+            const grid = document.getElementById('classesCoursesGrid');
+            const enrolledCourses = allCoursesData.filter(course => course.enrolled);
+            
+            grid.innerHTML = enrolledCourses.map(course => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer" onclick="viewCourseDetail(${course.id})">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-video text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${course.title}</h3>
+                            <p class="text-sm text-gray-600">${course.classes.length} classes</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">${course.description}</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        View Classes
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function populateBooksCoursesGrid() {
+            const grid = document.getElementById('booksCoursesGrid');
+            const enrolledCourses = allCoursesData.filter(course => course.enrolled);
+            
+            grid.innerHTML = enrolledCourses.map(course => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer" onclick="viewCourseDetail(${course.id})">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-book text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${course.title}</h3>
+                            <p class="text-sm text-gray-600">${course.books.length} books & materials</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">${course.description}</p>
+                    <button class="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition-colors">
+                        View Books
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function enrollCourse(courseId) {
+            alert('Enrollment feature would be implemented here. Course ID: ' + courseId);
+        }
+
+        // Course tab functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('course-tab')) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.course-tab').forEach(tab => {
+                    tab.classList.remove('border-blue-500', 'text-blue-600');
+                    tab.classList.add('border-transparent', 'text-gray-500');
+                });
+                
+                // Add active class to clicked tab
+                e.target.classList.add('border-blue-500', 'text-blue-600');
+                e.target.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.course-tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabName = e.target.getAttribute('data-tab');
+                document.getElementById(`course-${tabName}`).classList.remove('hidden');
+            }
+        });
+
+        function populateStudentCourses() {
+            // Enrolled Courses
+            const enrolledGrid = document.getElementById('enrolledCoursesGrid');
+            enrolledGrid.innerHTML = studentData.enrolledCourses.map(course => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-book text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${course.title}</h3>
+                            <p class="text-sm text-gray-600">${course.instructor}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-gray-600">Progress</span>
+                            <span class="text-sm font-medium text-gray-800">${course.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: ${course.progress}%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">${course.completedModules}/${course.modules} modules completed</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Continue Learning
+                    </button>
+                </div>
+            `).join('');
+
+            // Available Courses
+            const availableGrid = document.getElementById('availableCoursesGrid');
+            availableGrid.innerHTML = studentData.availableCourses.map(course => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-plus text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${course.title}</h3>
+                            <p class="text-sm text-gray-600">${course.instructor}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600">Duration: ${course.duration}</p>
+                        <p class="text-lg font-bold text-blue-600 mt-2">${course.price}</p>
+                    </div>
+                    <button class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                        Enroll Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function populateStudentClasses() {
+            // Class tabs functionality
+            document.querySelectorAll('.class-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.class-tab').forEach(t => {
+                        t.classList.remove('border-blue-500', 'text-blue-600', 'active');
+                        t.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    this.classList.add('border-blue-500', 'text-blue-600', 'active');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    const filter = this.getAttribute('data-tab');
+                    filterClasses(filter);
+                });
+            });
+
+            filterClasses('all');
+        }
+
+        function filterClasses(filter) {
+            let filteredClasses = studentData.classes;
+            if (filter !== 'all') {
+                filteredClasses = studentData.classes.filter(cls => cls.status === filter);
+            }
+
+            const content = document.getElementById('classesContent');
+            content.innerHTML = filteredClasses.map(cls => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-gray-800">${cls.title}</h3>
+                        <span class="px-3 py-1 rounded-full text-sm font-medium ${getClassStatusColor(cls.status)}">${cls.status.toUpperCase()}</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600"><i class="fas fa-calendar mr-2"></i>${cls.date}</p>
+                        <p class="text-gray-600"><i class="fas fa-clock mr-2"></i>${cls.time}</p>
+                        <p class="text-gray-600"><i class="fas fa-video mr-2"></i>${cls.type}</p>
+                    </div>
+                    <button class="w-full ${getClassButtonColor(cls.status)} py-2 rounded-lg transition-colors">
+                        ${getClassButtonText(cls.status)}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function getClassStatusColor(status) {
+            switch(status) {
+                case 'attended': return 'bg-green-100 text-green-800';
+                case 'missed': return 'bg-red-100 text-red-800';
+                case 'upcoming': return 'bg-blue-100 text-blue-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function getClassButtonColor(status) {
+            switch(status) {
+                case 'attended': return 'bg-gray-600 text-white hover:bg-gray-700';
+                case 'missed': return 'bg-yellow-600 text-white hover:bg-yellow-700';
+                case 'upcoming': return 'bg-blue-600 text-white hover:bg-blue-700';
+                default: return 'bg-gray-600 text-white hover:bg-gray-700';
+            }
+        }
+
+        function getClassButtonText(status) {
+            switch(status) {
+                case 'attended': return 'View Recording';
+                case 'missed': return 'Watch Recording';
+                case 'upcoming': return 'Join Class';
+                default: return 'View Details';
+            }
+        }
+
+        function populateStudentExams() {
+            // Exam tabs functionality
+            document.querySelectorAll('.exam-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.exam-tab').forEach(t => {
+                        t.classList.remove('border-blue-500', 'text-blue-600', 'active');
+                        t.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    this.classList.add('border-blue-500', 'text-blue-600', 'active');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    const filter = this.getAttribute('data-tab');
+                    filterExams(filter);
+                });
+            });
+
+            filterExams('all-exams');
+        }
+
+        function filterExams(filter) {
+            let filteredExams = studentData.exams;
+            if (filter === 'completed') {
+                filteredExams = studentData.exams.filter(exam => exam.status === 'completed');
+            } else if (filter === 'pending') {
+                filteredExams = studentData.exams.filter(exam => exam.status === 'pending' || exam.status === 'upcoming');
+            } else if (filter === 'assignments') {
+                filteredExams = studentData.exams.filter(exam => exam.type === 'assignment');
+            }
+
+            const content = document.getElementById('examsContent');
+            content.innerHTML = filteredExams.map(exam => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 ${exam.type === 'exam' ? 'bg-red-100' : 'bg-blue-100'} rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas ${exam.type === 'exam' ? 'fa-clipboard-list text-red-600' : 'fa-tasks text-blue-600'} text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${exam.title}</h3>
+                            <p class="text-sm text-gray-600">${exam.type.toUpperCase()}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600"><i class="fas fa-calendar mr-2"></i>${exam.date}</p>
+                        ${exam.score ? `<p class="text-gray-600"><i class="fas fa-star mr-2"></i>Score: ${exam.score}%</p>` : ''}
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 rounded-full text-sm font-medium ${getExamStatusColor(exam.status)}">${exam.status.toUpperCase()}</span>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            ${getExamButtonText(exam.status)}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getExamStatusColor(status) {
+            switch(status) {
+                case 'completed': return 'bg-green-100 text-green-800';
+                case 'pending': return 'bg-yellow-100 text-yellow-800';
+                case 'upcoming': return 'bg-blue-100 text-blue-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function getExamButtonText(status) {
+            switch(status) {
+                case 'completed': return 'View Result';
+                case 'pending': return 'Submit';
+                case 'upcoming': return 'View Details';
+                default: return 'View';
+            }
+        }
+
+        function populateStudentBooks() {
+            const grid = document.getElementById('studentBooksGrid');
+            grid.innerHTML = studentData.books.map(book => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-pdf text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-sm">${book.title}</h3>
+                            <p class="text-xs text-gray-600">by ${book.author}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600">Category: ${book.category}</p>
+                        <span class="px-2 py-1 rounded-full text-xs font-medium ${getBookStatusColor(book.status)}">${book.status.toUpperCase()}</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700">Read</button>
+                        <button class="flex-1 bg-gray-600 text-white py-2 px-3 rounded text-sm hover:bg-gray-700">Download</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getBookStatusColor(status) {
+            switch(status) {
+                case 'reading': return 'bg-blue-100 text-blue-800';
+                case 'completed': return 'bg-green-100 text-green-800';
+                case 'available': return 'bg-gray-100 text-gray-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function populateStudentNotices() {
+            const list = document.getElementById('studentNoticesList');
+            list.innerHTML = studentData.notices.map(notice => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-2">
+                        <h3 class="font-bold text-gray-800">${notice.title}</h3>
+                        <span class="px-2 py-1 text-xs font-semibold rounded ${getNoticePriorityColor(notice.priority)}">${notice.priority.toUpperCase()}</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">${notice.content}</p>
+                    <p class="text-sm text-gray-500"><i class="fas fa-clock mr-2"></i>${notice.date}</p>
+                </div>
+            `).join('');
+        }
+
+        function getNoticePriorityColor(priority) {
+            switch(priority) {
+                case 'high': return 'bg-red-100 text-red-800';
+                case 'medium': return 'bg-yellow-100 text-yellow-800';
+                case 'low': return 'bg-green-100 text-green-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function initializeStudentCharts() {
+            // Monthly Attendance Chart
+            const attendanceCtx = document.getElementById('studentAttendanceChart').getContext('2d');
+            new Chart(attendanceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Attendance %',
+                        data: [85, 90, 88, 92, 87, 90],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Exam Scores Chart
+            const scoresCtx = document.getElementById('studentScoresChart').getContext('2d');
+            new Chart(scoresCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
+                    datasets: [{
+                        label: 'Score',
+                        data: [78, 85, 82, 90, 88],
+                        backgroundColor: '#10B981'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Course Progress Chart
+            const progressCtx = document.getElementById('studentProgressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['IELTS Preparation', 'Spoken English', 'English Grammar'],
+                    datasets: [{
+                        data: [85, 92, 78],
+                        backgroundColor: ['#3B82F6', '#10B981', '#F59E0B']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Countdown timer for next class
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const classTime = new Date();
+            classTime.setHours(14, 0, 0, 0); // 2:00 PM today
+            
+            // If class time has passed today, set for tomorrow
+            if (now > classTime) {
+                classTime.setDate(classTime.getDate() + 1);
+            }
+            
+            const distance = classTime - now;
+            
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Initialize first section
+        populateStudentCourses();
+    </script>
+</body>
+</html>

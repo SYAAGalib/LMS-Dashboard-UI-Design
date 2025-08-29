@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Education Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-3"></i>
+                        <h1 class="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </button>
+                    <div class="flex items-center">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40" 
+                             alt="Admin" class="w-8 h-8 rounded-full mr-2">
+                        <span class="text-gray-700">Admin Panel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg h-screen fixed left-0 top-16 z-10">
+            <div class="p-4">
+                <div class="space-y-2">
+                    <button class="nav-item w-full text-left p-3 rounded-lg bg-blue-50 text-blue-600 font-medium" data-section="overview">
+                        <i class="fas fa-chart-line mr-3"></i>Overview
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="students">
+                        <i class="fas fa-users mr-3"></i>Students
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="courses">
+                        <i class="fas fa-book mr-3"></i>Courses
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="classes">
+                        <i class="fas fa-video mr-3"></i>Classes
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="exams">
+                        <i class="fas fa-clipboard-list mr-3"></i>Exams
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="interactive">
+                        <i class="fas fa-puzzle-piece mr-3"></i>Interactive Content
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="books">
+                        <i class="fas fa-file-pdf mr-3"></i>Books & PDFs
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="notices">
+                        <i class="fas fa-bell mr-3"></i>Notices
+                    </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="analytics">
+                        <i class="fas fa-chart-bar mr-3"></i>Analytics
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex-1 p-6">
+            <!-- Overview Section -->
+            <div id="overview" class="section active">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Dashboard Overview</h2>
+                    <p class="text-gray-600">Welcome back! Here's what's happening today.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-users text-3xl text-blue-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Total Students</p>
+                                <p class="text-2xl font-bold text-gray-800">247</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-book text-3xl text-green-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Active Courses</p>
+                                <p class="text-2xl font-bold text-gray-800">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-clipboard-list text-3xl text-yellow-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Exams Today</p>
+                                <p class="text-2xl font-bold text-gray-800">3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-video text-3xl text-purple-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Live Classes</p>
+                                <p class="text-2xl font-bold text-gray-800">5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions & Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Live Classes</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">IELTS Speaking Practice</p>
+                                    <p class="text-sm text-gray-600">2:00 PM - 3:30 PM</p>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                    Start Class
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">English Grammar Basics</p>
+                                    <p class="text-sm text-gray-600">4:00 PM - 5:00 PM</p>
+                                </div>
+                                <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                                    Start Class
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Notices</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 border-l-4 border-yellow-400 bg-yellow-50">
+                                <p class="font-medium text-gray-800">Exam Schedule Updated</p>
+                                <p class="text-sm text-gray-600">2 hours ago</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-blue-400 bg-blue-50">
+                                <p class="font-medium text-gray-800">New Course Material Added</p>
+                                <p class="text-sm text-gray-600">5 hours ago</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-green-400 bg-green-50">
+                                <p class="font-medium text-gray-800">System Maintenance Complete</p>
+                                <p class="text-sm text-gray-600">1 day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Section -->
+            <div id="students" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Student Management</h2>
+                    <p class="text-gray-600">Manage and monitor student progress</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-800">Student List</h3>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                <i class="fas fa-plus mr-2"></i>Add Student
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Student</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Roll No</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Course</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Attendance</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Score</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody" class="divide-y divide-gray-200">
+                                <!-- Students will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div id="courses" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Course Management</h2>
+                    <p class="text-gray-600">Create and manage courses</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="coursesGrid">
+                    <!-- Courses will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Classes Section -->
+            <div id="classes" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Class Management</h2>
+                    <p class="text-gray-600">Schedule and manage live classes</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Live Classes</h3>
+                        <div class="space-y-4" id="liveClassesList">
+                            <!-- Live classes will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Recorded Classes</h3>
+                        <div class="space-y-4" id="recordedClassesList">
+                            <!-- Recorded classes will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exams Section -->
+            <div id="exams" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Exam Management</h2>
+                    <p class="text-gray-600">Create and manage exams and assignments</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Exams & Assignments</h3>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <i class="fas fa-plus mr-2"></i>Create Exam
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="examsGrid">
+                        <!-- Exams will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Content Section -->
+            <div id="interactive" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Interactive Content</h2>
+                    <p class="text-gray-600">Create engaging interactive learning materials</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Drag & Drop Exercise</h3>
+                        <div class="mb-4">
+                            <p class="text-gray-600 mb-3">Match the words to their meanings:</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <div class="bg-blue-100 p-3 rounded-lg cursor-move" draggable="true">
+                                        <span class="font-medium">Eloquent</span>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg cursor-move" draggable="true">
+                                        <span class="font-medium">Perseverance</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="border-2 border-dashed border-gray-300 p-3 rounded-lg min-h-[60px] drop-zone">
+                                        <span class="text-gray-400">Persistence in effort</span>
+                                    </div>
+                                    <div class="border-2 border-dashed border-gray-300 p-3 rounded-lg min-h-[60px] drop-zone">
+                                        <span class="text-gray-400">Fluent speaking</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">True/False Questions</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 border rounded-lg">
+                                <p class="font-medium mb-3">Bangladesh is located in South Asia.</p>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="q1" value="true" class="mr-2">
+                                        <span>True</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="q1" value="false" class="mr-2">
+                                        <span>False</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <p class="font-medium mb-3">Dhaka is the capital of Bangladesh.</p>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="q2" value="true" class="mr-2">
+                                        <span>True</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="q2" value="false" class="mr-2">
+                                        <span>False</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Section -->
+            <div id="books" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Books & PDFs</h2>
+                    <p class="text-gray-600">Manage educational resources and materials</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="booksGrid">
+                    <!-- Books will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Notices Section -->
+            <div id="notices" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Notices Management</h2>
+                    <p class="text-gray-600">Create and manage notices for students</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">All Notices</h3>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <i class="fas fa-plus mr-2"></i>Create Notice
+                        </button>
+                    </div>
+                    <div class="space-y-4" id="noticesList">
+                        <!-- Notices will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Analytics & Reports</h2>
+                    <p class="text-gray-600">Track performance and generate insights</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Attendance Overview</h3>
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Exam Performance</h3>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Course Progress</h3>
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo data
+        const studentsData = [
+            { id: 1, name: "Rahim Uddin", roll: "2023001", course: "IELTS Preparation", attendance: 85, score: 72, status: "Active" },
+            { id: 2, name: "Fatema Khatun", roll: "2023002", course: "Spoken English", attendance: 90, score: 88, status: "Active" },
+            { id: 3, name: "Shakil Ahmed", roll: "2023003", course: "English Grammar", attendance: 70, score: 65, status: "Active" },
+            { id: 4, name: "Rashida Begum", roll: "2023004", course: "IELTS Preparation", attendance: 95, score: 92, status: "Active" },
+            { id: 5, name: "Karim Rahman", roll: "2023005", course: "Business English", attendance: 82, score: 78, status: "Active" },
+            { id: 6, name: "Nasir Hossain", roll: "2023006", course: "Spoken English", attendance: 88, score: 85, status: "Active" },
+            { id: 7, name: "Salma Khanam", roll: "2023007", course: "English Grammar", attendance: 92, score: 89, status: "Active" },
+            { id: 8, name: "Jahangir Alam", roll: "2023008", course: "IELTS Preparation", attendance: 75, score: 68, status: "Inactive" }
+        ];
+
+        const coursesData = [
+            { id: 101, title: "IELTS Preparation", modules: ["Reading", "Writing", "Speaking", "Listening"], students: 45, duration: "3 months" },
+            { id: 102, title: "Spoken English", modules: ["Pronunciation", "Fluency", "Conversation"], students: 32, duration: "2 months" },
+            { id: 103, title: "English Grammar", modules: ["Tenses", "Sentence Structure", "Parts of Speech"], students: 28, duration: "6 weeks" },
+            { id: 104, title: "Business English", modules: ["Email Writing", "Presentations", "Meetings"], students: 18, duration: "8 weeks" },
+            { id: 105, title: "Academic Writing", modules: ["Essays", "Reports", "Research Papers"], students: 25, duration: "10 weeks" },
+            { id: 106, title: "English Literature", modules: ["Poetry", "Drama", "Fiction"], students: 15, duration: "12 weeks" }
+        ];
+
+        const classesData = {
+            live: [
+                { id: 1, title: "IELTS Speaking Practice", time: "2:00 PM - 3:30 PM", instructor: "Dr. Rahman", participants: 25 },
+                { id: 2, title: "English Grammar Basics", time: "4:00 PM - 5:00 PM", instructor: "Prof. Sultana", participants: 30 },
+                { id: 3, title: "Business Communication", time: "6:00 PM - 7:30 PM", instructor: "Mr. Khan", participants: 18 }
+            ],
+            recorded: [
+                { id: 1, title: "Advanced Vocabulary Building", duration: "45 min", views: 156, uploaded: "2 days ago" },
+                { id: 2, title: "IELTS Writing Task 2", duration: "60 min", views: 203, uploaded: "5 days ago" },
+                { id: 3, title: "Pronunciation Masterclass", duration: "38 min", views: 89, uploaded: "1 week ago" }
+            ]
+        };
+
+        const examsData = [
+            { id: 1, title: "IELTS Mock Test - 1", type: "Exam", date: "2025-01-25", status: "Scheduled", participants: 45 },
+            { id: 2, title: "Grammar Assignment", type: "Assignment", date: "2025-01-22", status: "In Progress", participants: 28 },
+            { id: 3, title: "Speaking Practice Test", type: "Exam", date: "2025-01-28", status: "Scheduled", participants: 32 },
+            { id: 4, title: "Essay Writing Task", type: "Assignment", date: "2025-01-20", status: "Completed", participants: 25 }
+        ];
+
+        const booksData = [
+            { id: 1, title: "ইংরেজি গ্রামার ও রচনা", author: "Dr. Mohammad Ali", pages: 350, category: "Grammar" },
+            { id: 2, title: "IELTS Preparation Guide", author: "Cambridge University", pages: 280, category: "Test Prep" },
+            { id: 3, title: "Spoken English Mastery", author: "Prof. Rashida Khan", pages: 195, category: "Speaking" },
+            { id: 4, title: "ব্যবসায়িক ইংরেজি", author: "Karim Hassan", pages: 240, category: "Business" },
+            { id: 5, title: "English Literature Basics", author: "Dr. Fatema Begum", pages: 420, category: "Literature" }
+        ];
+
+        const noticesData = [
+            { id: 1, title: "Exam Schedule Updated", content: "The mid-term exam schedule has been updated. Please check your dashboard for new timings.", date: "2025-01-15", priority: "High" },
+            { id: 2, title: "New Course Material Added", content: "Advanced Grammar lessons have been added to your course library.", date: "2025-01-14", priority: "Medium" },
+            { id: 3, title: "Holiday Notice", content: "Classes will be closed on Victory Day (16th December).", date: "2025-01-10", priority: "Low" },
+            { id: 4, title: "Online Class Link Updated", content: "New Zoom meeting links have been sent to all students.", date: "2025-01-12", priority: "High" }
+        ];
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('bg-blue-50', 'text-blue-600');
+                    nav.classList.add('text-gray-700');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('bg-blue-50', 'text-blue-600');
+                this.classList.remove('text-gray-700');
+                
+                // Hide all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Show selected section
+                const targetSection = this.getAttribute('data-section');
+                document.getElementById(targetSection).classList.remove('hidden');
+                
+                // Initialize specific section content
+                initializeSection(targetSection);
+            });
+        });
+
+        function initializeSection(section) {
+            switch(section) {
+                case 'students':
+                    populateStudentsTable();
+                    break;
+                case 'courses':
+                    populateCoursesGrid();
+                    break;
+                case 'classes':
+                    populateClassesLists();
+                    break;
+                case 'exams':
+                    populateExamsGrid();
+                    break;
+                case 'books':
+                    populateBooksGrid();
+                    break;
+                case 'notices':
+                    populateNoticesList();
+                    break;
+                case 'analytics':
+                    initializeCharts();
+                    break;
+            }
+        }
+
+        function populateStudentsTable() {
+            const tbody = document.getElementById('studentsTableBody');
+            tbody.innerHTML = studentsData.map(student => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=40&h=40" 
+                                 alt="${student.name}" class="w-10 h-10 rounded-full mr-3">
+                            <span class="font-medium text-gray-800">${student.name}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">${student.roll}</td>
+                    <td class="px-6 py-4 text-gray-600">${student.course}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: ${student.attendance}%"></div>
+                            </div>
+                            <span class="text-sm text-gray-600">${student.attendance}%</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="font-medium ${student.score >= 80 ? 'text-green-600' : student.score >= 60 ? 'text-yellow-600' : 'text-red-600'}">${student.score}%</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${student.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">${student.status}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function populateCoursesGrid() {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = coursesData.map(course => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-book text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">${course.title}</h3>
+                            <p class="text-sm text-gray-600">${course.students} students</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Duration: ${course.duration}</p>
+                        <p class="text-sm text-gray-600">Modules: ${course.modules.length}</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mb-4">
+                        ${course.modules.map(module => `<span class="px-2 py-1 bg-gray-100 text-xs rounded">${module}</span>`).join('')}
+                    </div>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        View Details
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function populateClassesLists() {
+            const liveList = document.getElementById('liveClassesList');
+            const recordedList = document.getElementById('recordedClassesList');
+            
+            liveList.innerHTML = classesData.live.map(cls => `
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div>
+                        <h4 class="font-medium text-gray-800">${cls.title}</h4>
+                        <p class="text-sm text-gray-600">${cls.time}</p>
+                        <p class="text-xs text-gray-500">Instructor: ${cls.instructor} | ${cls.participants} participants</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Start</button>
+                        <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700">Edit</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            recordedList.innerHTML = classesData.recorded.map(cls => `
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div>
+                        <h4 class="font-medium text-gray-800">${cls.title}</h4>
+                        <p class="text-sm text-gray-600">Duration: ${cls.duration}</p>
+                        <p class="text-xs text-gray-500">${cls.views} views | ${cls.uploaded}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View</button>
+                        <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700">Edit</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateExamsGrid() {
+            const grid = document.getElementById('examsGrid');
+            grid.innerHTML = examsData.map(exam => `
+                <div class="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 ${exam.type === 'Exam' ? 'bg-red-100' : 'bg-blue-100'} rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas ${exam.type === 'Exam' ? 'fa-clipboard-list text-red-600' : 'fa-tasks text-blue-600'}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">${exam.title}</h4>
+                            <p class="text-xs text-gray-500">${exam.type}</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Date: ${exam.date}</p>
+                        <p class="text-sm text-gray-600">Participants: ${exam.participants}</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="px-2 py-1 text-xs font-semibold rounded ${exam.status === 'Completed' ? 'bg-green-100 text-green-800' : exam.status === 'In Progress' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}">${exam.status}</span>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">View Details</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateBooksGrid() {
+            const grid = document.getElementById('booksGrid');
+            grid.innerHTML = booksData.map(book => `
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-pdf text-orange-600 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-gray-800 text-sm">${book.title}</h3>
+                            <p class="text-xs text-gray-600">by ${book.author}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600">Pages: ${book.pages}</p>
+                        <p class="text-sm text-gray-600">Category: ${book.category}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700">View</button>
+                        <button class="flex-1 bg-gray-600 text-white py-2 px-3 rounded text-sm hover:bg-gray-700">Download</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateNoticesList() {
+            const list = document.getElementById('noticesList');
+            list.innerHTML = noticesData.map(notice => `
+                <div class="p-4 border rounded-lg hover:bg-gray-50">
+                    <div class="flex items-start justify-between mb-2">
+                        <h4 class="font-medium text-gray-800">${notice.title}</h4>
+                        <span class="px-2 py-1 text-xs font-semibold rounded ${notice.priority === 'High' ? 'bg-red-100 text-red-800' : notice.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}">${notice.priority}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">${notice.content}</p>
+                    <p class="text-xs text-gray-500">${notice.date}</p>
+                </div>
+            `).join('');
+        }
+
+        function initializeCharts() {
+            // Attendance Chart
+            const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+            new Chart(attendanceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Present', 'Absent', 'Late'],
+                    datasets: [{
+                        data: [75, 20, 5],
+                        backgroundColor: ['#10B981', '#EF4444', '#F59E0B']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['IELTS', 'Spoken English', 'Grammar', 'Business English'],
+                    datasets: [{
+                        label: 'Average Score',
+                        data: [78, 82, 75, 80],
+                        backgroundColor: '#3B82F6'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Course Completion %',
+                        data: [15, 30, 45, 60, 75, 85],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize overview section on page load
+        populateStudentsTable();
+    </script>
+</body>
+</html>

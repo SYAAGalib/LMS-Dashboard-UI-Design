@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Portal - LMS Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-full mb-6">
+                    <i class="fas fa-graduation-cap text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Education Portal</h1>
+                <p class="text-xl text-gray-600 mb-8">Choose your dashboard to get started</p>
+            </div>
+
+            <!-- Dashboard Options -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Admin Dashboard Card -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer border-2 border-transparent hover:border-blue-300"
+                         onclick="window.location.href='admin.html'">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6">
+                                <i class="fas fa-user-tie text-2xl text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h2>
+                            <p class="text-gray-600 mb-6">Manage courses, students, exams, and analytics. Complete administrative control panel.</p>
+                            
+                            <!-- Features List -->
+                            <div class="space-y-2 text-left mb-6">
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Student Management</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Course & Class Management</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Analytics & Reports</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Exam Management</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold transition-all duration-300 group-hover:shadow-lg">
+                                Access Admin Panel
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Dashboard Card -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer border-2 border-transparent hover:border-blue-300"
+                         onclick="window.location.href='student.html'">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mb-6">
+                                <i class="fas fa-user-graduate text-2xl text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Student Dashboard</h2>
+                            <p class="text-gray-600 mb-6">Access your courses, exams, assignments, and track your learning progress.</p>
+                            
+                            <!-- Features List -->
+                            <div class="space-y-2 text-left mb-6">
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Course Progress Tracking</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Live Classes & Recordings</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Exam & Assignment Portal</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>Performance Analytics</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-gradient-to-r from-blue-500 to-teal-500 text-white py-3 rounded-lg font-semibold transition-all duration-300 group-hover:shadow-lg">
+                                Access Student Portal
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-12">
+                <p class="text-gray-500 text-sm">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    Secure & Modern Learning Management System
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.group');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
