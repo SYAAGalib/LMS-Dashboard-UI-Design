@@ -47,6 +47,9 @@
                     <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="courses">
                         <i class="fas fa-book mr-3"></i>Courses
                     </button>
+                    <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="syllabus">
+                        <i class="fas fa-sitemap mr-3"></i>Syllabus Builder
+                    </button>
                     <button class="nav-item w-full text-left p-3 rounded-lg hover:bg-gray-50 text-gray-700" data-section="classes">
                         <i class="fas fa-video mr-3"></i>Classes
                     </button>
@@ -217,6 +220,57 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="coursesGrid">
                     <!-- Courses will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Syllabus Builder Section -->
+            <div id="syllabus" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Syllabus Builder</h2>
+                    <p class="text-gray-600">Create Udemy-style sections and lectures for each course</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Select Course</h3>
+                            <select id="syllabusCourseSelect" class="w-full p-3 border rounded-lg">
+                                <!-- options populated by JS -->
+                            </select>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Add Section</h3>
+                            <div class="space-y-3">
+                                <input id="newSectionTitle" type="text" placeholder="Section title" class="w-full p-3 border rounded-lg">
+                                <button onclick="addSection()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Add Section</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Add Lecture</h3>
+                            <div class="space-y-3">
+                                <input id="newLectureTitle" type="text" placeholder="Lecture title" class="w-full p-3 border rounded-lg">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <select id="newLectureType" class="p-3 border rounded-lg">
+                                        <option value="video">Video</option>
+                                        <option value="quiz">Quiz</option>
+                                        <option value="assignment">Assignment</option>
+                                    </select>
+                                    <input id="newLectureLength" type="text" placeholder="Length (e.g. 10m)" class="p-3 border rounded-lg">
+                                </div>
+                                <select id="sectionSelect" class="w-full p-3 border rounded-lg"></select>
+                                <button onclick="addLecture()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Add Lecture</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Curriculum</h3>
+                            <div id="syllabusList" class="space-y-4">
+                                <!-- syllabus populated by JS -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -411,6 +465,15 @@
             { id: 106, title: "English Literature", modules: ["Poetry", "Drama", "Fiction"], students: 15, duration: "12 weeks" }
         ];
 
+        // Syllabus demo store per course
+        const syllabusStore = {
+            101: [
+                { section: "IELTS Reading", lectures: [ { title: "Reading Strategies", type: "video", length: "12m" } ] },
+                { section: "IELTS Writing", lectures: [ { title: "Task 1 Graphs", type: "video", length: "15m" } ] }
+            ],
+            102: [ { section: "Pronunciation", lectures: [ { title: "IPA Basics", type: "video", length: "10m" } ] } ]
+        };
+
         const classesData = {
             live: [
                 { id: 1, title: "IELTS Speaking Practice", time: "2:00 PM - 3:30 PM", instructor: "Dr. Rahman", participants: 25 },
@@ -473,7 +536,7 @@
             });
         });
 
-        function initializeSection(section) {
+    function initializeSection(section) {
             switch(section) {
                 case 'students':
                     populateStudentsTable();
@@ -481,6 +544,9 @@
                 case 'courses':
                     populateCoursesGrid();
                     break;
+        case 'syllabus':
+            initializeSyllabusBuilder();
+            break;
                 case 'classes':
                     populateClassesLists();
                     break;
@@ -727,6 +793,80 @@
 
         // Initialize overview section on page load
         populateStudentsTable();
+
+        // Syllabus helpers
+        function initializeSyllabusBuilder() {
+            const select = document.getElementById('syllabusCourseSelect');
+            select.innerHTML = coursesData.map(c => `<option value="${c.id}">${c.title}</option>`).join('');
+            renderSyllabus();
+        }
+
+        function renderSyllabus() {
+            const courseId = parseInt(document.getElementById('syllabusCourseSelect').value || '101');
+            const list = document.getElementById('syllabusList');
+            const sections = syllabusStore[courseId] || [];
+            // fill target section dropdown
+            const secSelect = document.getElementById('sectionSelect');
+            secSelect.innerHTML = sections.map((s, idx) => `<option value="${idx}">${s.section}</option>`).join('');
+            list.innerHTML = sections.map((s, idx) => `
+                <div class="border rounded-lg">
+                    <div class="flex items-center justify-between p-4">
+                        <div class="font-medium text-gray-800">Section ${idx + 1}: ${s.section}</div>
+                        <div class="space-x-2">
+                            <button class="text-red-600 hover:text-red-800 text-sm" onclick="deleteSection(${courseId}, ${idx})">Delete</button>
+                        </div>
+                    </div>
+                    ${s.lectures.map((lec, li) => `
+                        <div class="flex items-center justify-between p-3 border-t">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 ${lec.type==='video' ? 'bg-red-100 text-red-600' : lec.type==='quiz' ? 'bg-blue-100 text-blue-600' : 'bg-yellow-100 text-yellow-700'} rounded flex items-center justify-center mr-3">
+                                    <i class="fas ${lec.type==='video' ? 'fa-play' : lec.type==='quiz' ? 'fa-question' : 'fa-tasks'}"></i>
+                                </span>
+                                <span class="text-gray-800">${lec.title}</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm text-gray-500">${lec.length}</span>
+                                <button class="text-red-600 hover:text-red-800 text-sm" onclick="deleteLecture(${courseId}, ${idx}, ${li})">Remove</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+            select.onchange = renderSyllabus;
+        }
+
+        function addSection() {
+            const courseId = parseInt(document.getElementById('syllabusCourseSelect').value);
+            const title = document.getElementById('newSectionTitle').value.trim();
+            if (!title) return;
+            syllabusStore[courseId] = syllabusStore[courseId] || [];
+            syllabusStore[courseId].push({ section: title, lectures: [] });
+            document.getElementById('newSectionTitle').value = '';
+            renderSyllabus();
+        }
+
+        function addLecture() {
+            const courseId = parseInt(document.getElementById('syllabusCourseSelect').value);
+            const secIdx = parseInt(document.getElementById('sectionSelect').value || '0');
+            const title = document.getElementById('newLectureTitle').value.trim();
+            const type = document.getElementById('newLectureType').value;
+            const length = document.getElementById('newLectureLength').value.trim() || '-';
+            if (!title || isNaN(secIdx)) return;
+            syllabusStore[courseId][secIdx].lectures.push({ title, type, length });
+            document.getElementById('newLectureTitle').value = '';
+            document.getElementById('newLectureLength').value = '';
+            renderSyllabus();
+        }
+
+        function deleteSection(courseId, idx) {
+            syllabusStore[courseId].splice(idx, 1);
+            renderSyllabus();
+        }
+
+        function deleteLecture(courseId, sIdx, lIdx) {
+            syllabusStore[courseId][sIdx].lectures.splice(lIdx, 1);
+            renderSyllabus();
+        }
     </script>
 </body>
 </html>

@@ -39,6 +39,14 @@ Note on screenshots:
   - Modular course cards with modules tags, duration, student count.
   - CTA for details; scalable grid layout.
 
+### 2.3.1 Syllabus Builder (Udemy-style)
+- Section: Syllabus Builder
+- Screenshot: `screenshots/4a-admin-syllabus-builder.png`
+- Highlights:
+  - Create Sections and Lectures (Video/Quiz/Assignment) per course.
+  - Quick add forms and live curriculum preview.
+  - Basis for linking live classes and replays by lecture.
+
 ### 2.4 Classes
 - Section: Classes
 - Screenshot: `screenshots/5-admin-classes.png`
@@ -92,14 +100,19 @@ Note on screenshots:
 - Highlights:
   - Enrolled vs Available states; price tag for non-enrolled.
   - Progress bar for enrolled.
+  - Course meta chips: hours, lectures, certificate badge.
 
-### 3.3 Course Detail Tabs
+### 3.3 Course Detail Tabs (Udemy-style)
 - Section: Course Detail → Classes / Books & PDFs / Assignments
-- Screenshot: `screenshots/13-student-course-classes.png`
+- Screenshot: `screenshots/13-student-course-overview.png`
+- Screenshot: `screenshots/13b-student-course-curriculum.png`
+- Screenshot: `screenshots/13c-student-course-classes.png`
 - Screenshot: `screenshots/14-student-course-books.png`
 - Screenshot: `screenshots/15-student-course-assignments.png`
 - Highlights:
-  - Switch tabs to see classes (Join/Replay), reading materials, and assignment states (pending/submitted/locked).
+  - Overview: “What you’ll learn” bullets and “Course includes” stats.
+  - Curriculum: Sections and Lectures with type and duration.
+  - Classes: Join upcoming, Replay completed; locked items visually muted.
 
 ### 3.4 Classes
 - Section: Classes
@@ -118,6 +131,12 @@ Note on screenshots:
 - Screenshot: `screenshots/18-student-performance.png`
 - Highlights:
   - Monthly attendance, scores trend, and course progress charts.
+
+### 3.8 Recent Classes & Replays
+- Section: Overview (bottom)
+- Screenshot: `screenshots/20-student-recent-replays.png`
+- Highlights:
+  - Quick access to recently completed or missed sessions with Replay buttons.
 
 ### 3.7 Account
 - Section: Account

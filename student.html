@@ -261,7 +261,13 @@
                 <div class="bg-white rounded-xl shadow-md">
                     <div class="border-b">
                         <nav class="flex space-x-8 px-6">
-                            <button class="course-tab py-4 px-2 border-b-2 border-blue-500 text-blue-600 font-medium" data-tab="classes">
+                            <button class="course-tab py-4 px-2 border-b-2 border-blue-500 text-blue-600 font-medium" data-tab="overview">
+                                Overview
+                            </button>
+                            <button class="course-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="curriculum">
+                                Curriculum
+                            </button>
+                            <button class="course-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="classes">
                                 Classes
                             </button>
                             <button class="course-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="books">
@@ -273,8 +279,35 @@
                         </nav>
                     </div>
 
+                    <!-- Overview Tab Content -->
+                    <div id="course-overview" class="course-tab-content p-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="lg:col-span-2">
+                                <h4 class="text-lg font-bold text-gray-800 mb-3">What you'll learn</h4>
+                                <ul id="courseWhatYouWillLearn" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-700">
+                                    <!-- bullets populated by JS -->
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="border rounded-lg p-4">
+                                    <h4 class="text-lg font-bold text-gray-800 mb-3">Course includes</h4>
+                                    <ul id="courseIncludes" class="space-y-2 text-gray-700">
+                                        <!-- stats populated by JS -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Curriculum Tab Content -->
+                    <div id="course-curriculum" class="course-tab-content p-6 hidden">
+                        <div class="space-y-4" id="courseCurriculumList">
+                            <!-- Curriculum will be populated by JavaScript -->
+                        </div>
+                    </div>
+
                     <!-- Classes Tab Content -->
-                    <div id="course-classes" class="course-tab-content p-6">
+                    <div id="course-classes" class="course-tab-content p-6 hidden">
                         <div class="space-y-4" id="courseClassesList">
                             <!-- Course classes will be populated by JavaScript -->
                         </div>
@@ -405,7 +438,7 @@
 
                 <!-- Performance Charts -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="bg-white rounded-xl shadow-md p-6 mt-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Monthly Attendance</h3>
                         <canvas id="studentAttendanceChart"></canvas>
                     </div>
@@ -420,6 +453,19 @@
                     <canvas id="studentProgressChart"></canvas>
                 </div>
             </div>
+
+                    <!-- Recent Classes & Replays -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Recent Classes & Replays</h3>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm" onclick="document.querySelector('[data-section=\"courses\"]').click()">
+                                Go to My Courses <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                        <div id="recentClassesList" class="space-y-3">
+                            <!-- recent classes populated by JS -->
+                        </div>
+                    </div>
 
             <!-- Account Section -->
             <div id="account" class="section hidden">
@@ -577,6 +623,37 @@
                 enrolled: true,
                 progress: 65,
                 modules: ["Reading", "Writing", "Speaking", "Listening"],
+                whatYouWillLearn: [
+                    "Answer IELTS Speaking with confidence",
+                    "Write high-scoring Task 1 & Task 2",
+                    "Master Reading skimming & scanning",
+                    "Improve Listening with note-taking"
+                ],
+                includes: {
+                    totalHours: 18,
+                    totalLectures: 42,
+                    totalArticles: 6,
+                    resources: 12,
+                    access: "Lifetime access",
+                    certificate: true
+                },
+                curriculum: [
+                    {
+                        section: "IELTS Reading",
+                        lectures: [
+                            { title: "Reading Strategies", length: "12m", type: "video" },
+                            { title: "Question Types Overview", length: "9m", type: "video" },
+                            { title: "Practice Set 1", length: "Quiz", type: "quiz" }
+                        ]
+                    },
+                    {
+                        section: "IELTS Writing",
+                        lectures: [
+                            { title: "Task 1 Graphs", length: "15m", type: "video" },
+                            { title: "Task 2 Structure", length: "13m", type: "video" }
+                        ]
+                    }
+                ],
                 classes: [
                     { id: 1, title: "IELTS Reading Strategies", date: "2025-01-20", time: "10:00 AM", status: "completed", type: "live" },
                     { id: 2, title: "Writing Task 1 - Graphs", date: "2025-01-22", time: "2:00 PM", status: "completed", type: "recorded" },
@@ -602,6 +679,35 @@
                 enrolled: true,
                 progress: 40,
                 modules: ["Pronunciation", "Fluency", "Conversation"],
+                whatYouWillLearn: [
+                    "Speak naturally with better pronunciation",
+                    "Gain fluency through structured practice",
+                    "Handle real-life conversations"
+                ],
+                includes: {
+                    totalHours: 12,
+                    totalLectures: 28,
+                    totalArticles: 3,
+                    resources: 8,
+                    access: "Lifetime access",
+                    certificate: true
+                },
+                curriculum: [
+                    {
+                        section: "Pronunciation",
+                        lectures: [
+                            { title: "IPA Basics", length: "10m", type: "video" },
+                            { title: "Stress & Intonation", length: "8m", type: "video" }
+                        ]
+                    },
+                    {
+                        section: "Conversation",
+                        lectures: [
+                            { title: "Small Talk Starters", length: "9m", type: "video" },
+                            { title: "Role-play Practice", length: "Assignment", type: "assignment" }
+                        ]
+                    }
+                ],
                 classes: [
                     { id: 5, title: "Pronunciation Basics", date: "2025-01-21", time: "3:00 PM", status: "completed", type: "live" },
                     { id: 6, title: "Conversation Practice", date: "2025-01-24", time: "5:00 PM", status: "missed", type: "live" },
@@ -625,6 +731,14 @@
                 enrolled: false,
                 progress: 0,
                 modules: ["Tenses", "Sentence Structure", "Parts of Speech"],
+                whatYouWillLearn: [
+                    "Master core English grammar",
+                    "Fix common mistakes quickly"
+                ],
+                includes: { totalHours: 8, totalLectures: 20, totalArticles: 2, resources: 4, access: "Lifetime access", certificate: true },
+                curriculum: [
+                    { section: "Tenses", lectures: [ { title: "Present Tense", length: "12m", type: "video" } ] }
+                ],
                 classes: [
                     { id: 8, title: "Present Tense Mastery", date: "2025-01-23", time: "9:00 AM", status: "locked", type: "live" },
                     { id: 9, title: "Past Tense Usage", date: "2025-01-25", time: "10:00 AM", status: "locked", type: "recorded" }
@@ -646,6 +760,15 @@
                 enrolled: false,
                 progress: 0,
                 modules: ["Email Writing", "Presentations", "Meetings"],
+                whatYouWillLearn: [
+                    "Write professional emails",
+                    "Present with clarity",
+                    "Lead effective meetings"
+                ],
+                includes: { totalHours: 10, totalLectures: 24, totalArticles: 3, resources: 6, access: "Lifetime access", certificate: true },
+                curriculum: [
+                    { section: "Email Writing", lectures: [ { title: "Tone & Structure", length: "11m", type: "video" } ] }
+                ],
                 classes: [
                     { id: 10, title: "Professional Email Writing", date: "2025-01-24", time: "2:00 PM", status: "locked", type: "live" }
                 ],
@@ -695,6 +818,9 @@
                 case 'all-courses':
                     populateAllCoursesGrid();
                     break;
+                case 'overview':
+                    populateRecentClasses();
+                    break;
                 case 'classes':
                     populateClassesCoursesGrid();
                     break;
@@ -733,6 +859,12 @@
                         
                         <p class="text-sm text-gray-600 mb-4">${course.description}</p>
                         
+                        <div class="flex flex-wrap gap-2 text-xs text-gray-600 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 rounded">${course.includes.totalHours}h video</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded">${course.includes.totalLectures} lectures</span>
+                            ${course.includes.certificate ? '<span class="px-2 py-1 bg-gray-100 rounded">Certificate</span>' : ''}
+                        </div>
+
                         <div class="mb-4">
                             <div class="flex justify-between text-sm text-gray-600 mb-1">
                                 <span>Duration: ${course.duration}</span>
@@ -775,9 +907,24 @@
             document.getElementById('courseDetailDescription').textContent = currentCourse.description;
             
             // Populate course content
+            populateCourseOverview();
+            populateCourseCurriculum();
             populateCourseClasses();
             populateCourseBooks();
             populateCourseAssignments();
+
+            // Make Overview tab active initially
+            document.querySelectorAll('.course-tab').forEach(tab => {
+                tab.classList.remove('border-blue-500', 'text-blue-600');
+                tab.classList.add('border-transparent', 'text-gray-500');
+            });
+            const firstTab = document.querySelector('.course-tab[data-tab="overview"]');
+            if (firstTab) {
+                firstTab.classList.add('border-blue-500', 'text-blue-600');
+                firstTab.classList.remove('border-transparent', 'text-gray-500');
+            }
+            document.querySelectorAll('.course-tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById('course-overview').classList.remove('hidden');
         }
 
         function goBackToCourses() {
@@ -929,6 +1076,72 @@
                 document.getElementById(`course-${tabName}`).classList.remove('hidden');
             }
         });
+
+        function populateCourseOverview() {
+            const learnUl = document.getElementById('courseWhatYouWillLearn');
+            if (learnUl) {
+                learnUl.innerHTML = currentCourse.whatYouWillLearn.map(item => `
+                    <li class="flex items-start"><i class="fas fa-check text-green-600 mr-2 mt-1"></i><span>${item}</span></li>
+                `).join('');
+            }
+            const includesUl = document.getElementById('courseIncludes');
+            if (includesUl) {
+                const inc = currentCourse.includes;
+                includesUl.innerHTML = `
+                    <li><i class="fas fa-play-circle mr-2 text-gray-500"></i>${inc.totalHours} hours on-demand video</li>
+                    <li><i class="fas fa-list-ol mr-2 text-gray-500"></i>${inc.totalLectures} lectures, ${inc.totalArticles} articles</li>
+                    <li><i class="fas fa-download mr-2 text-gray-500"></i>${inc.resources} downloadable resources</li>
+                    <li><i class="fas fa-infinity mr-2 text-gray-500"></i>${inc.access}</li>
+                    ${inc.certificate ? '<li><i class="fas fa-certificate mr-2 text-gray-500"></i>Certificate of completion</li>' : ''}
+                `;
+            }
+        }
+
+        function populateCourseCurriculum() {
+            const list = document.getElementById('courseCurriculumList');
+            if (!list) return;
+            list.innerHTML = currentCourse.curriculum.map((sec, idx) => `
+                <div class="border rounded-lg">
+                    <button class="w-full flex items-center justify-between p-4 hover:bg-gray-50" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <div class="font-medium text-gray-800">Section ${idx + 1}: ${sec.section}</div>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="p-4 pt-0">
+                        ${sec.lectures.map(lec => `
+                            <div class="flex items-center justify-between p-3 border-t">
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 ${lec.type==='video' ? 'bg-red-100 text-red-600' : lec.type==='quiz' ? 'bg-blue-100 text-blue-600' : 'bg-yellow-100 text-yellow-700'} rounded flex items-center justify-center mr-3">
+                                        <i class="fas ${lec.type==='video' ? 'fa-play' : lec.type==='quiz' ? 'fa-question' : 'fa-tasks'}"></i>
+                                    </span>
+                                    <span class="text-gray-800">${lec.title}</span>
+                                </div>
+                                <span class="text-sm text-gray-500">${lec.length}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateRecentClasses() {
+            const container = document.getElementById('recentClassesList');
+            if (!container) return;
+            // flatten enrolled courses classes and take latest completed/missed
+            const enrolled = allCoursesData.filter(c => c.enrolled);
+            const all = enrolled.flatMap(c => c.classes.map(cls => ({...cls, course: c.title})));
+            const recent = all.filter(x => x.status === 'completed' || x.status === 'missed').slice(0, 5);
+            container.innerHTML = recent.map(cls => `
+                <div class="flex items-center justify-between p-3 border rounded-lg ${cls.status==='completed' ? 'bg-green-50' : 'bg-red-50'}">
+                    <div>
+                        <p class="font-medium text-gray-800">${cls.title}</p>
+                        <p class="text-sm text-gray-600">${cls.course} • ${cls.date} • ${cls.time}</p>
+                    </div>
+                    <div>
+                        ${cls.status==='completed' ? '<button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Replay</button>' : '<span class="text-red-600 text-sm">Missed</span>'}
+                    </div>
+                </div>
+            `).join('');
+        }
 
         function populateStudentCourses() {
             // Enrolled Courses
@@ -1279,12 +1492,13 @@
             }
         }
 
-        // Update countdown every second
+    // Update countdown every second
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Initialize first section
-        populateStudentCourses();
+    // Initialize overview and My Courses for landing experience
+    populateRecentClasses();
+    populateStudentCourses();
     </script>
 </body>
 </html>

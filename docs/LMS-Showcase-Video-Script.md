@@ -28,6 +28,11 @@ Purpose: A concise, client-focused walkthrough of the LMS Admin and Student dash
 - Visual: Click Books & PDFs → resource cards with View/Download.
 - Voiceover: “Create exams and assignments, add interactive learning content, and curate PDFs and books—all in minutes.”
 
+## Admin — Syllabus Builder (60–70s)
+- Visual: Click Syllabus Builder → pick a course, add a Section, add a Lecture (Video), watch curriculum list update.
+- On-screen text: “Udemy-style curriculum”
+- Voiceover: “Build clear, section-based curricula with video, quiz, and assignment lectures.”
+
 ## Admin — Analytics (60–75s)
 - Visual: Click Analytics → animate charts (Attendance doughnut, Performance bar, Progress line).
 - On-screen text: “Attendance • Performance • Progress”
@@ -37,9 +42,8 @@ Purpose: A concise, client-focused walkthrough of the LMS Admin and Student dash
 - Visual: Switch to Student dashboard (`student.html`). Show ‘Next Live Class’ banner with countdown, then KPI cards and Course Progress bars. Scroll to Upcoming Exams and Latest Notices.
 - Voiceover: “Students see what matters now: next live class, progress, upcoming exams, and fresh notices.”
 
-## Student — Learning Flow (95–115s)
-- Visual: Click All Courses → show enrolled vs. available cards; open a course (View Course).
-- Visual: In Course Detail, switch tabs: Classes, Books & PDFs, Assignments.
+- Visual: Click All Courses → show meta chips (hours, lectures, certificate), then open a course (View Course).
+- Visual: In Course Detail, switch tabs: Overview (What you’ll learn, Course includes), Curriculum (sections/lectures), Classes (Join/Replay), Books & PDFs, Assignments.
 - Visual: Click Performance → show Attendance, Scores Trend, and Progress charts.
 - Visual: Click Account → profile and academic summary.
 - Voiceover: “Explore courses, attend or replay classes, read materials, submit assignments, track performance, and manage the account—all in one place.”
